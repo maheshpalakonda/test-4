@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(express.static(__dirname));
 
 // Connect to MongoDB
-mongoose.connect('mongodb+srv://maheshpalakunda_db_user:Mahesh1925@cluster0.mh9hkoh.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', {
+mongoose.connect('mongodb+srv://maheshpalakunda_db_user:Mahesh1925@cluster0.mh9hkoh.mongodb.net/shopnest?retryWrites=true&w=majority&appName=Cluster0', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });

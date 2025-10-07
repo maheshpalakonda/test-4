@@ -1,10 +1,6 @@
 const mongoose = require('mongoose');
 
-// Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/shopnest', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-});
+// No mongoose.connect() here — just define schemas and models
 
 // Customer Schema
 const customerSchema = new mongoose.Schema({
@@ -61,16 +57,12 @@ const orderSchema = new mongoose.Schema({
     createdAt: { type: Date, default: Date.now }
 });
 
+// Models
 const Customer = mongoose.model('Customer', customerSchema);
 const Seller = mongoose.model('Seller', sellerSchema);
 const Admin = mongoose.model('Admin', adminSchema);
 const Product = mongoose.model('Product', productSchema);
 const Order = mongoose.model('Order', orderSchema);
 
-module.exports = {
-    Customer,
-    Seller,
-    Admin,
-    Product,
-    Order
-};
+module.exports = { Customer, Seller, Admin, Product, Order };
+

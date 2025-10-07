@@ -9,10 +9,16 @@ pipeline {
 
     stages {
         stage('Checkout Code') {
-            steps { git branch: 'master', url: 'https://github.com/maheshpalakonda/test-4.git', credentialsId: 'github-pat' }
+            steps {
+                git branch: 'master', url: 'https://github.com/maheshpalakonda/test-4.git', credentialsId: 'github-pat'
+            }
         }
 
-        stage('Install Node Modules') { steps { sh 'npm install' } }
+        stage('Install Node Modules') {
+            steps {
+                sh 'npm install'
+            }
+        }
 
         stage('Stop & Remove Old Container') {
             steps {
@@ -28,13 +34,26 @@ pipeline {
             }
         }
 
-        stage('Build Docker Image') { steps { sh "docker build -t ${IMAGE_NAME}:latest ." } }
+        stage('Build Docker Image') {
+            steps {
+                sh "docker build -t ${IMAGE_NAME}:latest ."
+            }
+        }
 
-        stage('Run Docker Container') { steps { sh "docker run -d -p ${PORT}:3000 --name ${CONTAINER_NAME} ${IMAGE_NAME}:latest" } }
+        stage('Run Docker Container') {
+            steps {
+                sh "docker run -d -p ${PORT}:3000 --name ${CONTAINER_NAME} ${IMAGE_NAME}:latest"
+            }
+        }
     }
 
     post {
-        success { echo "Deployment completed successfully!" }
-        failure { echo "Deployment failed!" }
+        success {
+            echo "Deployment completed successfully!"
+        }
+        failure {
+            echo "Deployment failed!"
+        }
     }
 }
+

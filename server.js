@@ -239,7 +239,7 @@ app.post('/orders', async (req, res) => {
             customerId,
             items,
             totalAmount,
-[O            deliveryOption,
+            deliveryOption,
             address,
             paymentMethod
         });

@@ -34,7 +34,7 @@ app.get('/', (req, res) => {
 app.get('/:page', (req, res) => {
     const page = req.params.page;
     const filePath = path.join(__dirname, page);
-
+    
     // Check if file exists with .html extension
     if (require('fs').existsSync(filePath)) {
         res.sendFile(filePath);
@@ -50,7 +50,7 @@ app.get('/:page', (req, res) => {
 app.post('/register/customer', async (req, res) => {
     try {
         const { fullname, email, password, confirmPassword } = req.body;
-
+        
         if (password !== confirmPassword) {
             return res.status(400).json({ error: true, message: 'Passwords do not match' });
         }
@@ -79,7 +79,7 @@ app.post('/login/customer', async (req, res) => {
     try {
         const { email, password } = req.body;
         const customer = await Customer.findOne({ email });
-
+        
         if (!customer) {
             return res.status(400).json({ error: true, message: 'Customer not found' });
         }
@@ -89,8 +89,8 @@ app.post('/login/customer', async (req, res) => {
             return res.status(400).json({ error: true, message: 'Invalid password' });
         }
 
-        res.json({
-            error: false,
+        res.json({ 
+            error: false, 
             message: 'Login successful',
             user: {
                 id: customer._id,
@@ -107,7 +107,7 @@ app.post('/login/customer', async (req, res) => {
 app.post('/register/seller', async (req, res) => {
     try {
         const { fullname, business_name, business_type, email, password, confirmPassword } = req.body;
-
+        
         if (password !== confirmPassword) {
             return res.status(400).json({ error: true, message: 'Passwords do not match' });
         }
@@ -138,7 +138,7 @@ app.post('/login/seller', async (req, res) => {
     try {
         const { email, password } = req.body;
         const seller = await Seller.findOne({ email });
-
+        
         if (!seller) {
             return res.status(400).json({ error: true, message: 'Seller not found' });
         }
@@ -148,8 +148,8 @@ app.post('/login/seller', async (req, res) => {
             return res.status(400).json({ error: true, message: 'Invalid password' });
         }
 
-        res.json({
-            error: false,
+        res.json({ 
+            error: false, 
             message: 'Login successful',
             seller: {
                 id: seller._id,
@@ -167,7 +167,7 @@ app.post('/login/seller', async (req, res) => {
 app.post('/register/admin', async (req, res) => {
     try {
         const { fullname, email, password, confirmPassword } = req.body;
-
+        
         if (password !== confirmPassword) {
             return res.status(400).json({ error: true, message: 'Passwords do not match' });
         }
@@ -196,7 +196,7 @@ app.post('/login/admin', async (req, res) => {
     try {
         const { email, password } = req.body;
         const admin = await Admin.findOne({ email });
-
+        
         if (!admin) {
             return res.status(400).json({ error: true, message: 'Admin not found' });
         }
@@ -206,8 +206,8 @@ app.post('/login/admin', async (req, res) => {
             return res.status(400).json({ error: true, message: 'Invalid password' });
         }
 
-        res.json({
-            error: false,
+        res.json({ 
+            error: false, 
             message: 'Login successful',
             admin: {
                 id: admin._id,
@@ -234,12 +234,12 @@ app.get('/products', async (req, res) => {
 app.post('/orders', async (req, res) => {
     try {
         const { customerId, items, totalAmount, deliveryOption, address, paymentMethod } = req.body;
-
+        
         const order = new Order({
             customerId,
             items,
             totalAmount,
-            deliveryOption,
+[O            deliveryOption,
             address,
             paymentMethod
         });
@@ -260,4 +260,3 @@ app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
     console.log(`Your application should now be accessible at http://localhost:${PORT}`);
 });
-
